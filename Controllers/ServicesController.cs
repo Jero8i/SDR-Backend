@@ -26,7 +26,7 @@ public class ServicesController : ControllerBase
 
     [EnableCors("_myAllowSpecificOrigins")]
     [HttpGet(Name = "GetServicesAvailables")]
-    public IEnumerable<Servicio> Get() => Enumerable.Range(1, 5).Select(index => new Servicio
+    public IEnumerable<Service> Get() => Enumerable.Range(1, 5).Select(index => new Service
     {
         Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)).ToLongDateString(),
         Time = Horarios[Random.Shared.Next(Horarios.Length)],
