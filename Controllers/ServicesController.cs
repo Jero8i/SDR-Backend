@@ -7,15 +7,42 @@ namespace BackEnd.Controllers;
 [Route("[controller]")]
 public class ServicesController : ControllerBase
 {
-    private static readonly string[] Names = new[]
-    {
-        "Visita Guiada", "Visita Guiada con Almuerzo", "Almuerzo", "Cena"
-    };
 
-     private static readonly string[] Horarios = new[]
-    {
-        "13:00", "14:00", "14:30", "15:00"
-    };
+    public Service Visita_Guiada = new Service(
+        "Visita Guiada", 
+        new DateTime(2023, 1, 1),
+        new DateTime(2023, 12, 1),
+        true,
+        5,
+        new Day_Hour()
+    );
+
+    public Service Visita_Guiada_Almuerzo = new Service(
+        "Visita Guiada con Almuerzo", 
+        new DateTime(2023, 1, 1),
+        new DateTime(2023, 12, 1),
+        true,
+        5,
+        new Day_Hour()
+    );
+
+    public Service Almuerzo = new Service(
+        "Almuerzo", 
+        new DateTime(2023, 3, 1),
+        new DateTime(2023, 9, 1),
+        true,
+        8,
+        new Day_Hour()
+    );
+
+    public Service Cena = new Service(
+        "Cena", 
+        new DateTime(2023, 9, 1),
+        new DateTime(2023, 3, 1),
+        true,
+        8,
+        new Day_Hour()
+    );
 
     private readonly ILogger<ServicesController> _logger;
 
@@ -25,12 +52,14 @@ public class ServicesController : ControllerBase
     }
 
     [EnableCors("_myAllowSpecificOrigins")]
-    [HttpGet(Name = "GetServicesAvailables")]
-    public IEnumerable<Service> Get() => Enumerable.Range(1, 5).Select(index => new Service
+    [HttpGet(Name = "GetAvailableServices")]
+    public List<Service> GetAvailableServices()
     {
-        Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)).ToLongDateString(),
-        Time = Horarios[Random.Shared.Next(Horarios.Length)],
-        Name = Names[Random.Shared.Next(Names.Length)]
-    })
-            .ToArray();
+        List<Service> Available_Services = new List<Service>();
+        Available_Services.Add(Visita_Guiada);
+        Available_Services.Add(Visita_Guiada_Almuerzo);
+        Available_Services.Add(Almuerzo);
+        Available_Services.Add(Cena);
+        return Available_Services;
+    }
 }
