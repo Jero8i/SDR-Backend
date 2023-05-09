@@ -1,11 +1,13 @@
 namespace BackEnd;
 
-public class Classification
+public class Day
 {
     public int? Id { get; set; }
+
+    // Check property name.
     public string? Name { get; set; }
 
-    public Classification(int Id, string Name)
+    public Day(int Id, string Name)
     {
         this.Id = Id;
         this.Name = Name;
