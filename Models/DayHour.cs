@@ -3,10 +3,10 @@ namespace BackEnd;
 public class DayHour
 {
     public int? Id { get; set; }
-    public int? IdDay { get; set; }
-    public int? IdHour { get; set; }
+    public Day? IdDay { get; set; }
+    public Hour? IdHour { get; set; }
 
-    public DayHour(int Id, int IdDay, int IdHour)
+    public DayHour(int Id, Day IdDay, Hour IdHour)
     {
         this.Id = Id;
         this.IdDay = IdDay;

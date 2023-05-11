@@ -8,7 +8,7 @@ namespace BackEnd.Controllers;
 public class ServicesController : ControllerBase
 {
 
-    public List<Day> Days = new List<Day>() 
+    public static List<Day> Days = new List<Day>() 
     { 
         new Day(1, "Jueves"), 
         new Day(2, "Viernes"), 
@@ -16,7 +16,7 @@ public class ServicesController : ControllerBase
         new Day(4, "Domingo") 
     };
     
-    public List<Hour> Hours = new List<Hour>()
+    public static List<Hour> Hours = new List<Hour>()
     {
         // Day time:
         new Hour(1, new TimeSpan(13, 0, 0)),
@@ -38,7 +38,7 @@ public class ServicesController : ControllerBase
         new DateTime(2023, 12, 1),
         true,
         5,
-        new DayHour(1, 3, 1)
+        new DayHour(1, Days[2], Hours[0])
     );
 
     public Service Visita_Guiada_Almuerzo = new Service(
@@ -47,7 +47,7 @@ public class ServicesController : ControllerBase
         new DateTime(2023, 12, 1),
         true,
         5,
-        new DayHour(2, 3, 1)
+        new DayHour(2, Days[2], Hours[0])
     );
 
     public Service Almuerzo = new Service(
@@ -56,7 +56,7 @@ public class ServicesController : ControllerBase
         new DateTime(2023, 9, 1),
         true,
         8,
-        new DayHour(3, 3, 1)
+        new DayHour(3, Days[2], Hours[0])
     );
 
     public Service Cena = new Service(
@@ -65,7 +65,7 @@ public class ServicesController : ControllerBase
         new DateTime(2023, 3, 1),
         true,
         8,
-        new DayHour(4, 3, 6)
+        new DayHour(4, Days[2], Hours[5])
     );
 
     private readonly ILogger<ServicesController> _logger;
@@ -79,11 +79,12 @@ public class ServicesController : ControllerBase
     [HttpGet(Name = "GetAvailableServices")]
     public List<Service> GetAvailableServices()
     {
-        List<Service> Available_Services = new List<Service>();
-        Available_Services.Add(Visita_Guiada);
-        Available_Services.Add(Visita_Guiada_Almuerzo);
-        Available_Services.Add(Almuerzo);
-        Available_Services.Add(Cena);
+        var Available_Services = new List<Service>(){
+            Visita_Guiada,
+            Visita_Guiada_Almuerzo,
+            Almuerzo,
+            Cena
+        };
         return Available_Services;
     }
 }
