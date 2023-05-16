@@ -7,15 +7,15 @@ public class Service
     public DateTime? EndDate { get; set; }
     public bool? IsActive { get; set; }
     public int? MaxPeople { get; set; }
-    public DayHour? DayHour { get; set; }
+    public Schedule? Schedule { get; set; }
 
-    public Service(string Name, DateTime StartDate, DateTime EndDate, bool IsActive, int MaxPeople, DayHour DayHour)
+    public Service(string Name, DateTime StartDate, DateTime EndDate, bool IsActive, int MaxPeople, Schedule Schedule)
     {
         this.Name = Name;
         this.StartDate = StartDate;
         this.EndDate = EndDate;
         this.IsActive = IsActive;
         this.MaxPeople = MaxPeople;
-        this.DayHour = DayHour;
+        this.Schedule = Schedule;
     }
 }
