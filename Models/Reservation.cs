@@ -1,12 +1,23 @@
 namespace BackEnd;
 
-public class Reservation 
+public class Reservation
 {
-    public int? Id { get; set; } // Private? (get / set)
-    public int? Id_Customer { get; set; }
-    public int? Id_Service { get; set; }
-    public int? Id_Day_Hour { get; set; } // Check property names.
-    public int? Id_State { get; set; }
-    public int? Number_Diners { get; set; }
-    public String? Note { get; set; }
+    public int? Id { get; set; } // Check if id is needed.
+    public Customer? Customer { get; set; }
+    public Service? Service { get; set; }
+    public Schedule? Schedule { get; set; }
+    public State? State { get; set; }
+    public int? NumberDiners { get; set; }
+    public string? Note { get; set; }
+
+    public Reservation(int Id, Customer Customer, Service Service, Schedule Schedule, State State, int NumberDiners, string Note)
+    {
+        this.Id = Id;
+        this.Customer = Customer;
+        this.Service = Service;
+        this.Schedule = Schedule;
+        this.State = State;
+        this.NumberDiners = NumberDiners;
+        this.Note = Note;
+    }
 }

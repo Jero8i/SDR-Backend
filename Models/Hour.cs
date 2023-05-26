@@ -2,6 +2,19 @@ namespace BackEnd;
 
 public class Hour
 {
-    public int? Id { get; set; }
-    public TimeSpan? Time { get; set; } // Check TimeSpan.
+    // Named the property "hour" instead of "Hour" because I can't repeat the class name.
+    public int? hour { get; set; }
+
+    public int? minute { get; set; }
+
+    public Hour(int hour, int minute)
+    {
+        this.hour = hour;
+        this.minute = minute;
+    }
+
+    public override string ToString()
+    {
+        return $"{hour:D2}:{minute:D2}";
+    }
 }

@@ -3,18 +3,19 @@ namespace BackEnd;
 public class Service
 {
     public string? Name { get; set; }
-    public DateTime? Start_Date { get; set; }
-    public DateTime? End_Date { get; set; }
+    public DateTime? StartDate { get; set; }
+    public DateTime? EndDate { get; set; }
     public bool? IsActive { get; set; }
-    public int? Max_People { get; set; }
-    public Day_Hour? Day_Hour { get; set; }
+    public int? MaxPeople { get; set; }
+    public Schedule? Schedule { get; set; }
 
-    public Service(string Name, DateTime Start_Date, DateTime End_Date, bool IsActive, int Max_People, Day_Hour Day_Hour) {
+    public Service(string Name, DateTime StartDate, DateTime EndDate, bool IsActive, int MaxPeople, Schedule Schedule)
+    {
         this.Name = Name;
-        this.Start_Date = Start_Date;
-        this.End_Date = End_Date;
+        this.StartDate = StartDate;
+        this.EndDate = EndDate;
         this.IsActive = IsActive;
-        this.Max_People = Max_People;
-        this.Day_Hour = Day_Hour;
+        this.MaxPeople = MaxPeople;
+        this.Schedule = Schedule;
     }
 }
