@@ -16,30 +16,39 @@ public class ServicesController : ControllerBase
 
     [EnableCors("_myAllowSpecificOrigins")]
     [HttpGet(Name = "GetAvailableServices")]
-    public List<Service> GetAvailableServices(DateTime Date)
+    public List<Service>? GetAvailableServices(DateTime Date)
     {
-        CultureInfo culture = new CultureInfo("es-ES");
-        DayOfWeek Day = (DayOfWeek) Enum.Parse(typeof(DayOfWeek), culture.DateTimeFormat.GetDayName(Date.DayOfWeek));
-
-        List<Service> Response = new List<Service>();
-        ServiceMocks serviceMocks = new ServiceMocks();
-
-        foreach (var service in serviceMocks.AvailableServices)
+        try
         {
-            bool IsInRange = (Date >= service.StartDate) && (Date <= service.EndDate);
-            bool IsValid = service.Schedule.schedule.ContainsKey(Day);
+            CultureInfo culture = new CultureInfo("es-ES");
+            DayOfWeek Day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), culture.DateTimeFormat.GetDayName(Date.DayOfWeek));
 
-            if (service.IsActive != null)
+            List<Service> Response = new List<Service>();
+            ServiceMocks serviceMocks = new ServiceMocks();
+
+            foreach (var service in serviceMocks.AvailableServices)
             {
-                if ((bool)service.IsActive && IsInRange && IsValid)
+                bool IsInRange = (Date >= service.StartDate) && (Date <= service.EndDate);
+                bool IsValid = service.Schedule.schedule.ContainsKey(Day);
+
+                if (service.IsActive != null)
                 {
-                    Response.Add(service);
+                    if ((bool)service.IsActive && IsInRange && IsValid)
+                    {
+                        Response.Add(service);
+                    }
                 }
+
             }
 
-        }
+            return Response;
 
-        return Response;
+        }
+        catch (System.Exception)
+        {
+            // TODO define the format of the response to an error.
+            throw;
+        }
     }
 
     /*

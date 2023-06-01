@@ -34,13 +34,13 @@ public class ServiceMocks
         };
 
         this.DaySchedule = new Schedule();
-        DaySchedule.AddSchedule(DayOfWeek.Sabado, DayTime);
-        DaySchedule.AddSchedule(DayOfWeek.Domingo, DayTime);
+        DaySchedule.AddSchedule(DayOfWeek.sábado, DayTime);
+        DaySchedule.AddSchedule(DayOfWeek.domingo, DayTime);
 
         this.NightSchedule = new Schedule();
-        NightSchedule.AddSchedule(DayOfWeek.Viernes, NightTime);
-        NightSchedule.AddSchedule(DayOfWeek.Sabado, NightTime);
-        NightSchedule.AddSchedule(DayOfWeek.Domingo, NightTime);
+        NightSchedule.AddSchedule(DayOfWeek.viernes, NightTime);
+        NightSchedule.AddSchedule(DayOfWeek.sábado, NightTime);
+        NightSchedule.AddSchedule(DayOfWeek.domingo, NightTime);
 
         Service Visita_Guiada = new Service(
             "Visita Guiada",
