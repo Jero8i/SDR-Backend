@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,15 +18,8 @@ public class ServicesController : ControllerBase
     [HttpGet(Name = "GetAvailableServices")]
     public List<Service> GetAvailableServices(DateTime Date)
     {
-        Dictionary<System.DayOfWeek, DayOfWeek> Equivalencies = new Dictionary<System.DayOfWeek, DayOfWeek> {
-            {System.DayOfWeek.Monday, DayOfWeek.Lunes},
-            {System.DayOfWeek.Tuesday, DayOfWeek.Martes},
-            {System.DayOfWeek.Wednesday, DayOfWeek.Miercoles},
-            {System.DayOfWeek.Thursday, DayOfWeek.Jueves},
-            {System.DayOfWeek.Friday, DayOfWeek.Viernes},
-            {System.DayOfWeek.Saturday, DayOfWeek.Sabado},
-            {System.DayOfWeek.Sunday, DayOfWeek.Domingo}
-        };
+        CultureInfo culture = new CultureInfo("es-ES");
+        DayOfWeek Day = (DayOfWeek) Enum.Parse(typeof(DayOfWeek), culture.DateTimeFormat.GetDayName(Date.DayOfWeek));
 
         List<Service> Response = new List<Service>();
         ServiceMocks serviceMocks = new ServiceMocks();
@@ -33,12 +27,16 @@ public class ServicesController : ControllerBase
         foreach (var service in serviceMocks.AvailableServices)
         {
             bool IsInRange = (Date >= service.StartDate) && (Date <= service.EndDate);
-            bool IsValid = service.Schedule.schedule.ContainsKey(Equivalencies[Date.DayOfWeek]);
+            bool IsValid = service.Schedule.schedule.ContainsKey(Day);
 
-            if (IsInRange && IsValid)
+            if (service.IsActive != null)
             {
-                Response.Add(service);
+                if ((bool)service.IsActive && IsInRange && IsValid)
+                {
+                    Response.Add(service);
+                }
             }
+
         }
 
         return Response;
