@@ -73,7 +73,7 @@ public class ServiceMocks
            "Cena",
            new DateTime(2023, 9, 1),
            new DateTime(2024, 3, 1),
-           false,
+           true,
            8,
            NightSchedule
         );

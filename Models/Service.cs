@@ -11,7 +11,7 @@ public class Service
     */
     public DateTime? StartDate { get; set; }
     public DateTime? EndDate { get; set; }
-    public bool? IsActive { get; set; }
+    public bool IsActive { get; set; }
     public int? MaxPeople { get; set; }
     public Schedule? Schedule { get; set; }
 
