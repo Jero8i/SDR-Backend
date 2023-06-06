@@ -2,21 +2,20 @@ namespace BackEnd;
 
 public class Schedule
 {
-    // Changed the access modifier, otherwise the response is not displayed in JSON.
-    public Dictionary<DayOfWeek, List<Hour>> schedule { get; set;}
+    public Dictionary<DayOfWeek, List<ScheduleTime>> schedule { get; set;}
 
     public Schedule()
     {
-        schedule = new Dictionary<DayOfWeek, List<Hour>>();
+        schedule = new Dictionary<DayOfWeek, List<ScheduleTime>>();
     }
 
-    public void AddSchedule(DayOfWeek dayOfWeek, List<Hour> hours)
+    public void AddSchedule(DayOfWeek DayOfWeek, List<ScheduleTime> scheduleTimes)
     {
-        schedule[dayOfWeek] = hours;
+        schedule[DayOfWeek] = scheduleTimes;
     }
     
-    public List<Hour> GetSchedule(DayOfWeek dayOfWeek)
+    public List<ScheduleTime> GetSchedule(DayOfWeek DayOfWeek)
     {
-        return schedule[dayOfWeek];
+        return schedule[DayOfWeek];
     }
 }

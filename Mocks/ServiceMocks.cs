@@ -2,45 +2,45 @@ namespace BackEnd;
 
 public class ServiceMocks
 {
-    public List<Hour> DayTime { get; set; }
-    public List<Hour> NightTime { get; set; }
+    public List<ScheduleTime> DayTime { get; set; }
+    public List<ScheduleTime> NightTime { get; set; }
     public Schedule DaySchedule { get; set; }
     public Schedule NightSchedule { get; set; }
     public List<Service> AvailableServices { get; set; }
 
     public ServiceMocks()
     {
-        this.DayTime = new List<Hour>()
+        this.DayTime = new List<ScheduleTime>()
         {
-            new Hour(13, 00),
-            new Hour(13, 30),
-            new Hour(14, 00),
-            new Hour(14, 30),
-            new Hour(15, 00),
-            new Hour(15, 30),
-            new Hour(16, 00),
+            new ScheduleTime(13, 00),
+            new ScheduleTime(13, 30),
+            new ScheduleTime(14, 00),
+            new ScheduleTime(14, 30),
+            new ScheduleTime(15, 00),
+            new ScheduleTime(15, 30),
+            new ScheduleTime(16, 00),
 
         };
 
-        this.NightTime = new List<Hour>()
+        this.NightTime = new List<ScheduleTime>()
         {
-            new Hour(19, 00),
-            new Hour(19, 30),
-            new Hour(20, 00),
-            new Hour(20, 30),
-            new Hour(21, 00),
-            new Hour(21, 30),
-            new Hour(22, 00),
+            new ScheduleTime(19, 00),
+            new ScheduleTime(19, 30),
+            new ScheduleTime(20, 00),
+            new ScheduleTime(20, 30),
+            new ScheduleTime(21, 00),
+            new ScheduleTime(21, 30),
+            new ScheduleTime(22, 00),
         };
 
         this.DaySchedule = new Schedule();
-        DaySchedule.AddSchedule(DayOfWeek.Sabado, DayTime);
-        DaySchedule.AddSchedule(DayOfWeek.Domingo, DayTime);
+        DaySchedule.AddSchedule(DayOfWeek.sábado, DayTime);
+        DaySchedule.AddSchedule(DayOfWeek.domingo, DayTime);
 
         this.NightSchedule = new Schedule();
-        NightSchedule.AddSchedule(DayOfWeek.Viernes, NightTime);
-        NightSchedule.AddSchedule(DayOfWeek.Sabado, NightTime);
-        NightSchedule.AddSchedule(DayOfWeek.Domingo, NightTime);
+        NightSchedule.AddSchedule(DayOfWeek.viernes, NightTime);
+        NightSchedule.AddSchedule(DayOfWeek.sábado, NightTime);
+        NightSchedule.AddSchedule(DayOfWeek.domingo, NightTime);
 
         Service Visita_Guiada = new Service(
             "Visita Guiada",
@@ -72,8 +72,8 @@ public class ServiceMocks
         Service Cena = new Service(
            "Cena",
            new DateTime(2023, 9, 1),
-           new DateTime(2023, 3, 1),
-           false,
+           new DateTime(2024, 3, 1),
+           true,
            8,
            NightSchedule
         );
