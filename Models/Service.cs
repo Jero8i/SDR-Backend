@@ -13,7 +13,7 @@ public class Service
     public DateTime? EndDate { get; set; }
     public bool IsActive { get; set; }
     public int? MaxPeople { get; set; }
-    public Schedule? Schedule { get; set; }
+    public Schedule Schedule { get; set; }
 
     public Service(string Name, DateTime StartDate, DateTime EndDate, bool IsActive, int MaxPeople, Schedule Schedule)
     {
