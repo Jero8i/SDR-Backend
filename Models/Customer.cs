@@ -9,6 +9,10 @@ public class Customer
     public string? PhoneNumber { get; set; }
     public Classification? Classification { get; set; }
 
+    public Customer()
+    {
+    }
+    
     public Customer(int Id, string Name, string Lastname, string Email, string PhoneNumber, Classification Classification)
     {
         this.Id = Id;

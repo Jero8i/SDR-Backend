@@ -10,6 +10,10 @@ public class Reservation
     public int? NumberDiners { get; set; }
     public string? Note { get; set; }
 
+    public Reservation()
+    {
+    }
+
     public Reservation(int Id, Customer Customer, Service Service, DateTime Time, State State, int NumberDiners, string Note)
     {
         this.Id = Id;

@@ -5,6 +5,10 @@ public class ScheduleTime
     public int? Hour { get; set; }
     public int? Minute { get; set; }
 
+    public ScheduleTime()
+    {
+    }
+    
     public ScheduleTime(int Hour, int Minute)
     {
         this.Hour = Hour;
