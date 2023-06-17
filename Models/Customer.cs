@@ -12,7 +12,7 @@ public class Customer
     public Customer()
     {
     }
-    
+
     public Customer(int Id, string Name, string Lastname, string Email, string PhoneNumber, Classification Classification)
     {
         this.Id = Id;
@@ -22,4 +22,10 @@ public class Customer
         this.PhoneNumber = PhoneNumber;
         this.Classification = Classification;
     }
+
+    public override string ToString()
+    {
+        return $"Id: {Id}, Name: {Name}, Lastname: {Lastname}, Email: {Email}, PhoneNumber: {PhoneNumber}, Classification: {Classification}";
+    }
+
 }

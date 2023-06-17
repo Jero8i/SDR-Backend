@@ -24,4 +24,10 @@ public class Reservation
         this.NumberDiners = NumberDiners;
         this.Note = Note;
     }
+
+    public override string ToString()
+    {
+        return $"Id: {Id}, Customer: {Customer}, Service: {Service}, Time: {Time}, State: {State}, NumberDiners: {NumberDiners}, Note: {Note}";
+    }
+
 }
