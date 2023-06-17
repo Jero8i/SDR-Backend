@@ -1,4 +1,3 @@
-using System.Globalization;
 using Backend;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +16,11 @@ public class ReservationsController : ControllerBase
 
     [EnableCors("_myAllowSpecificOrigins")]
     [HttpPost("")]
-    public IActionResult CreateReservation([FromBody] Reservation reservation)
+    public IActionResult CreateReservation([FromBody] Reservation? reservation)
     {
         ReservationMocks rm = new ReservationMocks(new CustomerMocks(), new ServiceMocks());
         try
         {
-            // This validation is not working.
             if (ReservationValidations.IsNull(reservation))
             {
                 return BadRequest("Reserva NULA.");
@@ -63,7 +61,7 @@ public class ReservationsController : ControllerBase
         catch (System.Exception)
         {
             throw;
-            // return BadRequest("ERROR");
+            // Handle error related with DB (?).
         }
     }
 }
