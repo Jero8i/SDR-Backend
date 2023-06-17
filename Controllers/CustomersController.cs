@@ -28,7 +28,7 @@ public class CustomersController : ControllerBase
 
             if (CustomerValidations.IsNewCustomer(customer))
             {
-                if (CustomerValidations.IsValid(customer))
+                if (CustomerValidations.IsValid(cm.Customers, customer))
                 {
                     // Database.save(reservation)
                     return Ok("Cliente creado con éxito!");
@@ -42,15 +42,22 @@ public class CustomersController : ControllerBase
             {
                 if (CustomerValidations.IsPresent(cm.Customers, (int)customer.Id))
                 {
-                    Customer aux = CustomerValidations.GetCustomer(cm.Customers, (int)customer.Id);
+                    if (CustomerValidations.IsValid(cm.Customers, customer))
+                    {
+                        Customer aux = CustomerValidations.GetCustomer(cm.Customers, (int)customer.Id);
 
-                    aux.Name = customer.Name;
-                    aux.Lastname = customer.Lastname;
-                    aux.Email = customer.Email;
-                    aux.PhoneNumber = customer.PhoneNumber;
-                    
-                    // Database.update(reservation)
-                    return Ok("Cliente con id " + customer.Id + " actualizado con éxito!");
+                        aux.Name = customer.Name;
+                        aux.Lastname = customer.Lastname;
+                        aux.Email = customer.Email;
+                        aux.PhoneNumber = customer.PhoneNumber;
+
+                        // Database.update(reservation)
+                        return Ok("Cliente con id " + customer.Id + " actualizado con éxito!");
+                    }
+                    else
+                    {
+                        return BadRequest("La información proporcionada para actualizar al cliente contiene algún error.");
+                    }
                 }
                 else
                 {
