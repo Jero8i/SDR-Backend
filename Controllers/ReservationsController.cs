@@ -43,6 +43,7 @@ public class ReservationsController : ControllerBase
                 if (ReservationValidations.IsPresent(rm.Reservations, (int)reservation.Id))
                 {
                     Reservation aux = ReservationValidations.GetReservation(rm.Reservations, (int)reservation.Id);
+
                     aux.Customer = reservation.Customer;
                     aux.Service = reservation.Service;
                     aux.Time = reservation.Time;
