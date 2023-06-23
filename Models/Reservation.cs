@@ -10,6 +10,10 @@ public class Reservation
     public int? NumberDiners { get; set; }
     public string? Note { get; set; }
 
+    public Reservation()
+    {
+    }
+
     public Reservation(int Id, Customer Customer, Service Service, DateTime Time, State State, int NumberDiners, string Note)
     {
         this.Id = Id;
@@ -20,4 +24,10 @@ public class Reservation
         this.NumberDiners = NumberDiners;
         this.Note = Note;
     }
+
+    public override string ToString()
+    {
+        return $"Id: {Id}, Customer: {Customer}, Service: {Service}, Time: {Time}, State: {State}, NumberDiners: {NumberDiners}, Note: {Note}";
+    }
+
 }

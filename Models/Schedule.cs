@@ -1,8 +1,10 @@
+using System.Text;
+
 namespace BackEnd;
 
 public class Schedule
 {
-    public Dictionary<DayOfWeek, List<ScheduleTime>> schedule { get; set;}
+    public Dictionary<DayOfWeek, List<ScheduleTime>> schedule { get; set; }
 
     public Schedule()
     {
@@ -13,9 +15,28 @@ public class Schedule
     {
         schedule[DayOfWeek] = scheduleTimes;
     }
-    
+
     public List<ScheduleTime> GetSchedule(DayOfWeek DayOfWeek)
     {
         return schedule[DayOfWeek];
     }
+
+    public override string ToString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("Schedule:");
+
+        foreach (var kvp in schedule)
+        {
+            sb.AppendLine($"Day: {kvp.Key}");
+
+            foreach (var scheduleTime in kvp.Value)
+            {
+                sb.AppendLine($"{scheduleTime}");
+            }
+        }
+
+        return sb.ToString();
+    }
+
 }

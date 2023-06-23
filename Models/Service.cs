@@ -15,6 +15,10 @@ public class Service
     public int? MaxPeople { get; set; }
     public Schedule Schedule { get; set; }
 
+    public Service()
+    {
+    }
+
     public Service(string Name, DateTime StartDate, DateTime EndDate, bool IsActive, int MaxPeople, Schedule Schedule)
     {
         this.Name = Name;
@@ -24,4 +28,10 @@ public class Service
         this.MaxPeople = MaxPeople;
         this.Schedule = Schedule;
     }
+
+    public override string ToString()
+    {
+        return $"StartDate: {StartDate}, EndDate: {EndDate}, IsActive: {IsActive}, MaxPeople: {MaxPeople}, Schedule: {Schedule}";
+    }
+
 }
