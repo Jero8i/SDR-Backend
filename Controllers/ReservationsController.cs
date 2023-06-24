@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackEnd.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[reservations]")]
 public class ReservationsController : ControllerBase
 {
     private readonly ILogger<ServicesController> _logger;
@@ -15,7 +15,7 @@ public class ReservationsController : ControllerBase
     }
 
     [EnableCors("_myAllowSpecificOrigins")]
-    [HttpPost("")]
+    [HttpPost("/new-reservation", Name = "CreateReservation")]
     public IActionResult CreateReservation([FromBody] Reservation? reservation)
     {
         ReservationMocks rm = new ReservationMocks(new CustomerMocks(), new ServiceMocks());

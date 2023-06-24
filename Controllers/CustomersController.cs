@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackEnd.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[customers]")]
 public class CustomersController : ControllerBase
 {
     private readonly ILogger<ServicesController> _logger;
@@ -15,7 +15,7 @@ public class CustomersController : ControllerBase
     }
 
     [EnableCors("_myAllowSpecificOrigins")]
-    [HttpPost("")]
+    [HttpPost("/new-customer", Name = "CreateCustomer")]
     public IActionResult CreateCustomer([FromBody] Customer? customer)
     {
         CustomerMocks cm = new CustomerMocks();

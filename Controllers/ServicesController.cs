@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BackEnd.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("[services]")]
 public class ServicesController : ControllerBase
 {
     private readonly ILogger<ServicesController> _logger;
@@ -15,8 +15,8 @@ public class ServicesController : ControllerBase
     }
 
     [EnableCors("_myAllowSpecificOrigins")]
-    [HttpGet(Name = "GetAvailableServices")]
-    public List<Service>? GetAvailableServices(DateTime Date)
+    [HttpGet("/available-services/{Date}", Name = "GetAvailableServicesByDate")]
+    public List<Service>? GetAvailableServicesByDate(DateTime Date)
     {
         try
         {
@@ -38,6 +38,21 @@ public class ServicesController : ControllerBase
             }
 
             return Response;
+        }
+        catch (System.Exception)
+        {
+            throw;
+        }
+    }
+
+    [EnableCors("_myAllowSpecificOrigins")]
+    [HttpGet("/all-services", Name = "GetAllServices")]
+    public List<Service>? GetAllServices()
+    {
+        try
+        {
+            ServiceMocks serviceMocks = new ServiceMocks();
+            return serviceMocks.AvailableServices;
         }
         catch (System.Exception)
         {
