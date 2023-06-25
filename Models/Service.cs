@@ -4,7 +4,7 @@ public class Service
 {
     public string? Name { get; set; }
 
-    // Ask:
+    // TODO:
     /*
     Both StartDate and EndDate are DateTime types, in which you have to specify year, month and day.
     The problem is that the service has to be independent of the year, otherwise the value of year should change automatically.
