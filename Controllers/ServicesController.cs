@@ -29,7 +29,7 @@ public class ServicesController : ControllerBase
             foreach (var service in serviceMocks.AvailableServices)
             {
                 bool IsInRange = (Date >= service.StartDate) && (Date <= service.EndDate);
-                bool IsValid = service.Schedule.schedule.ContainsKey(Day);
+                bool IsValid = (service.Schedule.schedule.ContainsKey(Day)) && (Date >= DateTime.Today);
 
                 if (service.IsActive && IsInRange && IsValid)
                 {
