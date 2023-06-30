@@ -9,16 +9,18 @@ namespace BackEnd.Controllers;
 public class ReservationsController : ControllerBase
 {
     private readonly ILogger<ServicesController> _logger;
+    private ReservationMocks rm;
+
     public ReservationsController(ILogger<ServicesController> logger)
     {
         _logger = logger;
+        rm = new ReservationMocks(new CustomerMocks(), new ServiceMocks());
     }
 
     [EnableCors("_myAllowSpecificOrigins")]
     [HttpPost("/new-reservation", Name = "CreateReservation")]
     public IActionResult CreateReservation([FromBody] Reservation? reservation)
     {
-        ReservationMocks rm = new ReservationMocks(new CustomerMocks(), new ServiceMocks());
         try
         {
             if (ReservationValidations.IsNull(reservation))
@@ -31,6 +33,14 @@ public class ReservationsController : ControllerBase
                 if (ReservationValidations.IsValid(reservation))
                 {
                     // Database.save(reservation)
+
+                    // I did this to test the endpoint by console:
+                    rm.Reservations.Add(reservation);
+                    Console.WriteLine("Reserva recibida.");
+                    foreach (var aux in rm.Reservations)
+                    {
+                        Console.WriteLine("Id: " + aux.Id + " Nota: " + aux.Note);
+                    }
                     return Ok("Reserva creada con éxito!");
                 }
                 else
@@ -70,6 +80,21 @@ public class ReservationsController : ControllerBase
         {
             throw;
             // Handle error related with DB (?).
+        }
+    }
+
+    // This endpoint works but it is not updated when you post a new reservation.
+    [EnableCors("_myAllowSpecificOrigins")]
+    [HttpGet("/all-reservations", Name = "GetAllReservations")]
+    public List<Reservation>? GetAllReservations()
+    {
+        try
+        {
+            return rm.Reservations;
+        }
+        catch (System.Exception)
+        {
+            throw;
         }
     }
 }
